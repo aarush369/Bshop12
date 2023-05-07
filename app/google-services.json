@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "42144437159",
+    "project_id": "bshop1-cc605",
+    "storage_bucket": "bshop1-cc605.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:42144437159:android:4cac03e1c2118666965c82",
+        "android_client_info": {
+          "package_name": "com.example.bshop1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "42144437159-ne9htqb0rv64a9vnmp3bekdes7lp3get.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdDPX-N1TZbA9Aq628x9P9xQ6IkqyTGfY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "42144437159-ne9htqb0rv64a9vnmp3bekdes7lp3get.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
