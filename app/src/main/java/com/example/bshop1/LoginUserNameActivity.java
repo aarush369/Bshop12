@@ -12,6 +12,11 @@ import android.widget.ProgressBar;
 import com.example.bshop1.Utils.FirebaseUtils;
 import com.example.bshop1.models.UserModels;
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Objects;
 
 public class LoginUserNameActivity extends AppCompatActivity {
     Button letInBt;
@@ -19,6 +24,7 @@ public class LoginUserNameActivity extends AppCompatActivity {
     ProgressBar pb3;
     UserModels userModels;
     String phoneNum;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,8 +39,6 @@ public class LoginUserNameActivity extends AppCompatActivity {
 
         setInProgressBar(false);
 
-
-
         letInBt.setOnClickListener(v -> {
             setInProgressBar(true);
             String userName = etUserName.getText().toString();
@@ -44,26 +48,20 @@ public class LoginUserNameActivity extends AppCompatActivity {
             }
             if(userModels != null){
                 userModels.setUserName(userName);
-            }
-            else {
-
+            } else {
                 userModels = new UserModels(phoneNum,userName, Timestamp.now());
             }
             FirebaseUtils.currentUserDetails().set(userModels).addOnCompleteListener(task -> {
                 setInProgressBar(false);
                 if(task.isSuccessful()){
-
-                    Intent intent = new Intent(LoginUserNameActivity.this,MainActivity.class);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    saveUserNameToFirestore(userName);
+                    Intent intent = new Intent(LoginUserNameActivity.this, MainActivity.class);
+                    intent.putExtra("name", userName);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
                 }
-
             });
-
         });
-
-
-
     }
 
     private void getUserName() {
@@ -73,27 +71,31 @@ public class LoginUserNameActivity extends AppCompatActivity {
                 userModels= task.getResult().toObject(UserModels.class);
                 if(userModels != null){
                     etUserName.setText(userModels.getUserName());
-
                 }
-
-
-
             }
         });
+    }
 
-
+    private void saveUserNameToFirestore(String userName) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        CollectionReference usersCollectionRef = db.collection("users");
+        String userId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
+        usersCollectionRef.document(userId).update("userName", userName)
+                .addOnSuccessListener(aVoid -> {
+                    // User name saved successfully
+                })
+                .addOnFailureListener(e -> {
+                    // Handle error saving user name
+                });
     }
 
     void setInProgressBar(boolean inProgressBar){
         if(inProgressBar){
             pb3.setVisibility(View.VISIBLE);
             letInBt.setVisibility(View.GONE);
-        }
-        else {
+        } else {
             pb3.setVisibility(View.GONE);
             letInBt.setVisibility(View.VISIBLE);
         }
-
-
     }
 }

@@ -4,10 +4,11 @@
 
 
 
-    <color name="primary_one">#ff5964</color>
+    <color name="primary_one">#fff</color>
     <color name="primary_two">#ffe74c</color>
     <color name="off_white">#fdfdfd</color>
     <color name="light_grey">#c3c3c3</color>
-    <color name="black">#FF000000</color>
+    <color name="black">#631D1D</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorButton">#333738</color>
 </resources>

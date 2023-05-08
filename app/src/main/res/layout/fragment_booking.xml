@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primary_one"
+    tools:context=".BookingFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+        <!-- In the above cardview widget cardelevation property will give elevation to your card view
+            card corner radius will provide radius to your card view card background color will give
+            background color to your card view card max elevation will give the cardview maximum
+            elevation card prevent corner overlap will add padding to CardView on v20 and before to
+            prevent intersections between the Card content and rounded corners. Card use compact padding
+            will add padding in API v21+ as well to have the same measurements with previous versions -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- ImageVIew to display our Course Image -->
+            <ImageView
+                android:id="@+id/imageViewR"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"
+                android:contentDescription="@string/app_name"
+                android:padding="5dp"
+                android:src="@drawable/baseline_person_24" />
+
+            <!-- Text View to display Course Name -->
+            <TextView
+                android:id="@+id/tvbrow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/imageViewR"
+                android:layout_marginStart="10dp"
+
+                android:text="Name"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvbrow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvbrow"
+                android:layout_marginStart="10dp"
+
+
+                android:text="Place"
+                android:textColor="@color/black"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <!-- Text VIew to display Course Rating -->
+            <!-- Image used in present in drawable folder -->
+        </RelativeLayout>
+
+
+
+</FrameLayout>
